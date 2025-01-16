@@ -1,4 +1,5 @@
 #if 1
+//åŸºäºstm32 rt_threadçš„è½¯spié©±åŠ¨
 #include <rthw.h>
 #include <rtthread.h>
 #include "myconfig.h"
@@ -55,13 +56,13 @@
 
 
 	
-#define	S_SPI_DELAY 10//15//10//¶ÔÓÚ72MÊ±ÖÓ£¬Ê±ÖÓ·ÖÆµÖµÉèÖÃÎª1098£¨¶ÔÓÚ36MÊ¹ÓÃ549£©
+#define	S_SPI_DELAY 10//15//10//å¯¹äº72Mæ—¶é’Ÿï¼Œæ—¶é’Ÿåˆ†é¢‘å€¼è®¾ç½®ä¸º1098ï¼ˆå¯¹äº36Mä½¿ç”¨549ï¼‰
 
 	char q;
 	u8 ADH,ADM,ADL;
 	u32 k1,k2,k3;
 	 
-	/******************ads1247¹Ü½ÅÓëMCU¶ÔÓ¦¹ØÏµ*******************
+	/******************ads1247ç®¡è„šä¸MCUå¯¹åº”å…³ç³»*******************
 	SCK----------PD3
 	MISO---------PD4
 	MOSI---------PD5							(SPI)
@@ -69,14 +70,14 @@
 	RESET--------PD0
 	START--------PB3
 	DRDY---------PD6
-	******************ads1247¹Ü½ÅÓëMCU¶ÔÓ¦¹ØÏµ*******************/
+	******************ads1247ç®¡è„šä¸MCUå¯¹åº”å…³ç³»*******************/
 void ADS1247_SPI_Configuration()
 {
  
 //  	SPI_InitTypeDef SPI_InitStruct;  
   	GPIO_InitTypeDef GPIO_InitStructure;
 	 
-  	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB|RCC_APB2Periph_GPIOD|RCC_APB2Periph_AFIO,ENABLE); 	 //SPIµÄSCK¡¢MISO¡¢MOSI¶¼ÊÇPB
+  	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB|RCC_APB2Periph_GPIOD|RCC_APB2Periph_AFIO,ENABLE); 	 //SPIçš„SCKã€MISOã€MOSIéƒ½æ˜¯PB
 //	GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable,ENABLE); 
    
    //CLK
@@ -121,7 +122,7 @@ u8 SPI_ADS1247_SendByte(unsigned char in)
 		
 		while (bi--)
 		{
-			S_SPI_CLKH;//Ê±ÖÓÉÏÉıÑØ£¬´«¸ĞÆ÷¶ÁÈ¡Êı¾İ
+			S_SPI_CLKH;//æ—¶é’Ÿä¸Šå‡æ²¿ï¼Œä¼ æ„Ÿå™¨è¯»å–æ•°æ®
 			dli = S_SPI_DELAY;
 			
 			while (dli--);
@@ -136,7 +137,7 @@ u8 SPI_ADS1247_SendByte(unsigned char in)
 			in <<= 1;
 			dli = S_SPI_DELAY;
 			while (dli--);
-			S_SPI_CLKL;//Ê±ÖÓÏÂ½µÑØ£¬MCU¸Ä±äÊı¾İ
+			S_SPI_CLKL;//æ—¶é’Ÿä¸‹é™æ²¿ï¼ŒMCUæ”¹å˜æ•°æ®
 			dli = S_SPI_DELAY;
 			while (dli--);
 		}
@@ -155,13 +156,13 @@ u8 SPI_ADS1247_ReadByte()
    {
 	   for (bi = 0; bi < 8; bi++)
 	   {
-		   S_SPI_CLKH;//Ê±ÖÓÉÏÉıÑØ£¬´«¸ĞÆ÷¸Ä±äÊı¾İ
+		   S_SPI_CLKH;//æ—¶é’Ÿä¸Šå‡æ²¿ï¼Œä¼ æ„Ÿå™¨æ”¹å˜æ•°æ®
 		   
 		   out <<= 1;
 		   dli = S_SPI_DELAY;
 		   while (dli--);
 		   
-		   S_SPI_CLKL;//Ê±ÖÓÏÂ½µÑØ£¬MCU¶ÁÈ¡Êı¾İ
+		   S_SPI_CLKL;//æ—¶é’Ÿä¸‹é™æ²¿ï¼ŒMCUè¯»å–æ•°æ®
 	   
 		   dli = S_SPI_DELAY;
 		   while (dli--);
@@ -180,7 +181,7 @@ u8 SPI_ADS1247_ReadByte()
 
 	   /*******************************************************************************  
 	* Function Name  : SPI_ADS1247_SendByte  
-	* Description	 : Ğ´ADS1247µÄ¼Ä´æÆ÷
+	* Description	 : å†™ADS1247çš„å¯„å­˜å™¨
 	* Input 		 :	 
 	* Output		 :	
 	*******************************************************************************/
@@ -197,7 +198,7 @@ u8 SPI_ADS1247_ReadByte()
 	  
 	   /*******************************************************************************  
 	* Function Name  : SPI_ADS1247_SendByte  
-	* Description	 : ¶ÁADS1247µÄ¼Ä´æÆ÷
+	* Description	 : è¯»ADS1247çš„å¯„å­˜å™¨
 	* Input 		 :	 
 	* Output		 :	
 	*******************************************************************************/
@@ -217,7 +218,7 @@ u8 SPI_ADS1247_ReadByte()
 	 
 	/*******************************************************************************  
 	* Function Name  : ADS1247_ReadData  
-	* Description	 : ¶Á ADS1247 ×ª»»Öµ
+	* Description	 : è¯» ADS1247 è½¬æ¢å€¼
 	* Input 		 : addr:Regiter address 		 
 	* Output		 : None  
 	* Return		 : Register data
@@ -237,7 +238,7 @@ u8 SPI_ADS1247_ReadByte()
 	 
 	 
 	/*******************************************************************************  
-	* Function Name  : ADS1247_Init 	 (Í¨µÀºÍµçÁ÷Êä³ö¶Ë¿ÚÃ»Ñ¡Ôñ)
+	* Function Name  : ADS1247_Init 	 (é€šé“å’Œç”µæµè¾“å‡ºç«¯å£æ²¡é€‰æ‹©)
 	* Description	 : ADS1247 init
 	* Input 		 : None 		 
 	* Output		 : None  
@@ -258,16 +259,16 @@ u8 SPI_ADS1247_ReadByte()
 		while(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_6) ==1);
 		SPI_ADS1247_SendByte(ADS1247_CMD_RESET);	 //RESET
 		rt_thread_delay(1);
-		ADS1247WREG(ADS1247_REG_SYS0,0x0); 	//ÔöÒæ0,5sps    //ÔöÒæ5,160sps 
+		ADS1247WREG(ADS1247_REG_SYS0,0x0); 	//å¢ç›Š0,5sps    //å¢ç›Š5,160sps 
 		rt_thread_delay(1);
-		ADS1247WREG(ADS1247_REG_VBIAS,0);   //Æ«ÖÃµçÑ¹¹Ø±Õ£¨Ä¬ÈÏ£©
+		ADS1247WREG(ADS1247_REG_VBIAS,0);   //åç½®ç”µå‹å…³é—­ï¼ˆé»˜è®¤ï¼‰
 		rt_thread_delay(1);
-		ADS1247WREG(ADS1247_REG_MUX1,0x30);   //ÄÚ²¿µçÑ¹»ù×¼Ò»Ö±¿ªÑ¡ÔñÄÚ²¿Ğ£×¼
+		ADS1247WREG(ADS1247_REG_MUX1,0x30);   //å†…éƒ¨ç”µå‹åŸºå‡†ä¸€ç›´å¼€é€‰æ‹©å†…éƒ¨æ ¡å‡†
 		rt_thread_delay(1);
 		
 		q=ADS1247RREG(ADS1247_REG_MUX1);
 		
-		rt_kprintf("²âÊÔ:%x\r\n",q);
+		rt_kprintf("æµ‹è¯•:%x\r\n",q);
 		ADS_CS_1;
 	}
 	 
@@ -323,7 +324,7 @@ int yuan_1247v[4][10]={0};
 static void ADS1247_process_plus(void* parameter)
 {
 //	int i=0;
-//	float sum=0;	//¶Ë¿Ú³õÊ¼»¯
+//	float sum=0;	//ç«¯å£åˆå§‹åŒ–
 	int channel_select=0;
 	ADS1247_init_start();
 
@@ -355,7 +356,7 @@ static void ADS1247_process_plus(void* parameter)
 		V_1248[channel_select]=(int)(ret00*125/512); //mv
 		yun_suan_v[channel_select]=V_1248[channel_select];
 		modifyro(V_A0+channel_select,yun_suan_v[channel_select]);
-//		rt_kprintf("channel %dµçÑ¹=%d mv\n",channel_select,(int)V_1248[channel_select]);
+//		rt_kprintf("channel %dç”µå‹=%d mv\n",channel_select,(int)V_1248[channel_select]);
 		rt_thread_delay(220);	
 	}
 	
