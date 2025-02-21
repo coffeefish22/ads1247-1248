@@ -1,3 +1,4 @@
+// 1247 spi驱动
 #if 1
 //基于stm32 rt_thread的软spi驱动
 #include <rthw.h>
